@@ -1,4 +1,4 @@
-{% load static %}
+  {% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,31 +13,32 @@
       <button type="button" class="btn btn-primary">Home</button>
       <input type="text" value="Input Text Here">
       <button type="button" class="btn btn-primary">Search</button>
-      <button type="button" class="btn btn-primary">Cart</button>
-      <button type="button" class="btn btn-primary">Login</button>
+      <a class="btn btn-primary" href="{% url 'shoppingcart'%}">Cart</a>
+      <a class="btn btn-primary" href="{% url 'login'%}">Login</a>
       </span>
     </p>
     <p>
-      <button type="button" class="btn btn-primary">Filter By</button>
+      <span>Filter By:</span>
       <button type="button" class="btn btn-primary">Lures</button>
       <button type="button" class="btn btn-primary">Fishing Rods</button>
       <button type="button" class="btn btn-primary">Bait</button>
       <button type="button" class="btn btn-primary">Misc</button>
    </p>
-   <p>
+   <div class="row">
     {% if product %}
     {% for p in product %}
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{p.product_id}}.jpg" alt="{{p.product_name}} image">
+          <img class="card-img-top" src="{{p.imageURL}}" alt="{{p.product_name}} image">
             <div class="card-body">
                 <h5 class="card-title">{{p.product_name}}</h5>
-                <a class="btn btn-primary" href="">{{p.price}}</a>
+                <a class="btn btn-primary" href="">${{p.price}}</a>
+                <a class="btn btn-primary" href="{%url 'item_detail' p.product_id%}">info</a>
             </div>
         </div>
     {% endfor %}
     {% else %}
         <p>No Products</p>
     {% endif %}
-   </p>
+    </div>
   </body>
 </html>

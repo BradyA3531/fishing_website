@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from .models import Account
 from storefront.models import product
 from django.contrib import messages
+from storefront.models import order
 
 
 
@@ -14,8 +15,11 @@ from django.contrib import messages
 #Reminder: Add model stuff later for username/email and password login
 def account_view(request):
     current_user = request.user
+    orders = order.objects.filter(user_email = current_user.id)
+
+    account_dict = {'account': current_user, 'order': orders}
     
-    return render(request,'account/account.html', {'account': current_user})
+    return render(request,'account/account.html', context = account_dict)
 
 #Reminder: Add model stuff later for username/email and password login
 def login_view(request):
@@ -51,9 +55,6 @@ def register_view(request):
 
             account = Account.objects.create_user(email, fname, lname, addressline1, city, state, zipcode, sec_answer, password)
             account.save()
-
-            
-
             redirect('login')
 
     context = {'form' : form}

@@ -27,7 +27,7 @@ class product(models.Model):
 #order model
 class order(models.Model):
         order_id = models.AutoField(primary_key=True)
-        user_id = models.ForeignKey("account.Account", verbose_name=("email"), on_delete=models.CASCADE)
+        user_email = models.ForeignKey("account.Account", verbose_name=("email"), on_delete=models.CASCADE)
         quantity = models.IntegerField(null=False)
         product_id = models.ForeignKey("storefront.product", verbose_name=("product_id"), on_delete=models.CASCADE)
         purchase_date = models.DateField(auto_created=True)

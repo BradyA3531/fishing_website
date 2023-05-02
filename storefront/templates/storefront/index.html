@@ -14,7 +14,11 @@
       <input type="text" value="Input Text Here">
       <button type="button" class="btn btn-primary">Search</button>
       <a class="btn btn-primary" href="{% url 'shoppingcart'%}">Cart</a>
+      {%if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'account'%}">{{fname}}</a>
+      {% else %}
       <a class="btn btn-primary" href="{% url 'login'%}">Login</a>
+      {% endif %}
       </span>
     </p>
     <p>

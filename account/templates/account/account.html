@@ -8,11 +8,14 @@
   </head>
   <body>
     <h1 class="text-center">My Account</h1>
+    <div>
+        <a class="btn btn-primary" href="{% url 'logout' %}">logout</button>
+        </div>
     <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Name: </li>
-        <li class="list-group-item">Email: </li>
-        <li class="list-group-item">Address: </li>
+        <li class="list-group-item">Name: {{account.fname}} {{account.lname}}</li>
+        <li class="list-group-item">Email: {{account.email}}</li>
+        <li class="list-group-item">Address: {{account.addressline1}}</li>
         <li class="list-group-item">Payment Info: </li>
     </ul>
     </div>

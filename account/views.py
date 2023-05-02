@@ -16,14 +16,11 @@ from storefront.models import order
 def account_view(request):
     current_user = request.user
     orders = order.objects.filter(user_email = current_user.id)
-
     account_dict = {'account': current_user, 'order': orders}
-    
     return render(request,'account/account.html', context = account_dict)
 
 #Reminder: Add model stuff later for username/email and password login
 def login_view(request):
-    
     if request.method == 'POST':
         inputEmail = request.POST.get('email')
         inputPassword = request.POST.get('password')
@@ -32,14 +29,12 @@ def login_view(request):
             login(request, user)
             print(user)
             return redirect('storefront')
-            
-    
-
+        else:
+            messages.success(request, "Invalid Email AND OR Password")
     return render(request,'account/login.html')
 
 def register_view(request):
-    form = accountForm()
-    
+    form = accountForm() 
     if request.method =='POST':
         form = accountForm(request.POST)
         if form.is_valid():
@@ -52,17 +47,19 @@ def register_view(request):
             state = request.POST['state']
             zipcode = request.POST['zipcode']
             sec_answer = request.POST['sec_answer']
-
             account = Account.objects.create_user(email, fname, lname, addressline1, city, state, zipcode, sec_answer, password)
             account.save()
-            redirect('login')
-
+            messages.success(request, "Account was created")
+            return redirect('login')
+        else:
+            messages.success(request, "Account was not created")
+            
     context = {'form' : form}
     return render(request, 'account/register.html', context)
 
 
 def signout(request):
     logout(request)
-    messages.success(request,("you were succesfully logged out"))
+    messages.success(request,"you were succesfully logged out")
     return redirect('storefront')
     

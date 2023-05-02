@@ -12,13 +12,20 @@ def storefront_view(request):
         name = request.user.fname
         product_dict = {'product' : product_list, 'fname': name}
         return render(request, 'storefront/index.html', context=product_dict)
+        
     else:
         product_dict = {'product' : product_list}
         return render(request, 'storefront/index.html', context=product_dict)
+    
 
 
 def item_detail_view(request, pk):
     item = product.objects.get(pk = pk)
     product_dict = {'product':item}
     return render(request,'storefront/item_detail.html', context = product_dict)
+
+def buy_page_view(request, pk):
+    item = product.objects.get(pk = pk)
+    product_dict = {'product':item}
+    return render(request,'storefront/buy_page.html', context = product_dict)
 

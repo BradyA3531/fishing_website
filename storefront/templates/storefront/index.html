@@ -14,9 +14,8 @@
      
      <p></p>
       <span>
-      <button type="button" class="btn btn-primary">Home</button>
-      <input type="text" value="" placeholder="Search">
-      <button type="button" class="btn btn-primary">Search</button>
+      <a type="button" class="btn btn-primary" href="{%url 'storefront' %}">Home</a>
+      
       {%if user.is_authenticated %}
         <a class="btn btn-primary" href="{% url 'account'%}">{{fname}}</a>
       {% else %}
@@ -25,11 +24,11 @@
       </span>
     </p>
     <p>
-      
-      <button type="button" class="btn btn-primary">Lures</button>
-      <button type="button" class="btn btn-primary">Fishing Rods</button>
-      <button type="button" class="btn btn-primary">Bait</button>
-      <button type="button" class="btn btn-primary">Misc</button>
+      <a type="button" class="btn btn-primary" href="{%url 'storefront' %}">No Filter</a>
+      <a type="button" class="btn btn-primary" href="{%url 'filter_by_lures' %}">Lures</a>
+      <a type="button" class="btn btn-primary" href="{%url 'filter_by_rods' %}">Fishing Rods</a>
+      <a type="button" class="btn btn-primary" href="{%url 'filter_by_bait' %}">Bait</a>
+      <a type="button" class="btn btn-primary" href="{%url 'filter_by_misc' %}">Misc</a>
    </p>
    <div class="container">
    <div class="row">
@@ -39,7 +38,11 @@
           <img class="card-img-top" src="{{p.imageURL}}" alt="{{p.product_name}} image" height="300px" style="margin-top: 10px;">
             <div class="card-body">
                 <h5 class="card-title">{{p.product_name}} - ${{p.price}} </h5>
-                <a class="btn btn-primary" href="{%url 'buy_page' p.product_id%}">Buy Now</a>
+                {% if user.is_authenticated %}
+                  <a class="btn btn-primary" href="{%url 'buy_page' p.product_id%}">Buy Now</a>
+                {% else %}
+                  <a class="btn btn-primary" href="{%url 'login'%}">Buy Now</a>
+                {% endif %}
                 <a class="btn btn-primary" href="{%url 'item_detail' p.product_id%}">info</a>
             </div>
         </div>

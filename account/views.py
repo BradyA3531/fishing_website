@@ -61,5 +61,5 @@ def register_view(request):
 def signout(request):
     logout(request)
     messages.success(request,"you were succesfully logged out")
-    return redirect('storefront')
+    return redirect('login')
     

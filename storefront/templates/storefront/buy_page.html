@@ -9,22 +9,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fishermen's Finds</title>
 </head>
-<body>
-    <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem; text-align: center;"> 
+<body style="text-align: center;">
+    <div>
+    <span> <img src="https://i.imgur.com/wQgk90p.png" alt="image"> <h1>Fishermen's Finds</h1></span>
+    <a class="btn btn-primary" href="{%url 'storefront'%}">Back Home</a>
+    <span>
+    <div class="card" style="width: 18rem; margin: 0 auto; float: none; margin-bottom: 10px; margin-top: 20px; text-align:center;">
     <img class="card-img-top" src="{{product.imageURL}}" alt="{{product.product_name}} image">
     <p>{{product.product_name}}</p>
     <p>{{product.product_desc}}</p>
-        <div class="form-group">                
+        <form action="" method="POST">
+        {%csrf_token%} 
+        <div class="form-group">             
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="name" type="text"  name="name" value="{{ name }}" placeholder="Name"></div></li>
+                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="name" type="text"  name="email" value="{{ name }}" placeholder="Email"></div></li>
                 <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="CreditCard" type="text"  name="CreditCard" value="" placeholder="Credit Card #"></div></li>
                 <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="MMYY" type="text"  name="MMYY" value="{{ MMYY }}" placeholder="MMYY"></div></li>
-                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="Address" type="text"  name="Address" value="{{ Address }}" placeholder="Address"></div></li>
+                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="Address" type="text"  name="Address" value="{{ cvv }}" placeholder="CVV"></div></li>
                 <li class="list-group-item">${{product.price}}</li>
             </ul>
             <input type="submit" class="btn btn-primary">
             </div>
         </div>
-        
+        </form>
+    </span>
+    </div>
 </body>
 </html>

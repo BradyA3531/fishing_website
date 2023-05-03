@@ -31,4 +31,4 @@ class order(models.Model):
         quantity = models.IntegerField(null=False)
         product_id = models.ForeignKey("storefront.product", verbose_name=("product_id"), on_delete=models.CASCADE)
         purchase_date = models.DateField(auto_created=True)
-
+        

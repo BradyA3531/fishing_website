@@ -11,9 +11,10 @@
 
     <form action="" method="POST">
       {%csrf_token%}<a type="button" class="btn btn-primary" href="{% url 'storefront'%}">Home</a>
-      <div></div>
+      
       <h1 class="text-center">Login</h1>
-      <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><div class="input" width="100px">
             <input type="email" name="email" class="form-control" placeholder="Email"  aria-label="email" aria-describedby="addon-wrapping">
@@ -25,11 +26,13 @@
           <li class="list-group-item">Dont Have Account? <a type="button" class="btn btn-success" href="{% url 'register'%}">Create One</a></li>
         </ul>
       </div>
-      
+      <div class="message">
+        {%for msg in messages %}
+            {{msg}}
+        {% endfor%}
+      </div>
+    </div>
     </form>
-    {%for msg in messages %}
-      {{msg}}
-    {% endfor%}
   </body>
 </html>
 

@@ -24,8 +24,8 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="name" type="text"  name="email" value="{{ name }}" placeholder="Email"></div></li>
                 <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="CreditCard" type="text"  name="CreditCard" value="" placeholder="Credit Card #"></div></li>
-                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="MMYY" type="text"  name="MMYY" value="{{ MMYY }}" placeholder="MMYY"></div></li>
-                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="Address" type="text"  name="Address" value="{{ cvv }}" placeholder="CVV"></div></li>
+                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="MMYY" type="text"  name="MMYY" value="{{ MMYY }}" placeholder="MMYY" maxlength = "4"></div></li>
+                <li class="list-group-item"><div class="input" width="100px"><input class="form-control" id="Address" type="text"  name="Address" value="{{ cvv }}" placeholder="CVV" maxlength = "3"></div></li>
                 <li class="list-group-item">${{product.price}}</li>
             </ul>
             <input type="submit" class="btn btn-primary">
@@ -34,5 +34,8 @@
         </form>
     </span>
     </div>
+    {% for msg in messages%}
+                {{msg}}
+            {% endfor %}
 </body>
 </html>

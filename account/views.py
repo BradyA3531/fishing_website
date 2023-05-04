@@ -16,6 +16,7 @@ from storefront.models import order
 def account_view(request):
     current_user = request.user
     orders = order.objects.filter(user_email = current_user.id)
+    
     account_dict = {'account': current_user, 'order': orders}
     return render(request,'account/account.html', context = account_dict)
 

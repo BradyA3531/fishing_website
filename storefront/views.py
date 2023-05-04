@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from storefront.models import product
 from account.views import signout
@@ -6,6 +6,8 @@ from account.models import Account
 from .forms import orderForm
 from .models import order
 import datetime
+from django.contrib import messages
+
 
 
 
@@ -84,10 +86,9 @@ def buy_page_view(request, pk):
             purchase_date = datetime.date.today()
             my_order = order(user_email = user_email, quantity = quantity, product_id = product_id, purchase_date=purchase_date)
             my_order.save()
-
-
-
-    
+            messages.success(request, "Your order has been placed. Thank you for your patronage")
+        else:
+            messages.success(request,"Your order has not been placed. Please validate with your email")
     product_dict = {'product':item , 'form': form}
     return render(request,'storefront/buy_page.html', context = product_dict)
 
